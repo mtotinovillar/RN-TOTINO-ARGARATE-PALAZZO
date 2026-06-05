@@ -16,8 +16,7 @@ export default function Register(props) {
       return
     }
     
-    console.log('Email:', email);
-    console.log('Username:', userName);
+    console.log('Users:', userName, email);
     console.log('Password:', password); 
 
     auth.createUserWithEmailAndPassword(email, password)
