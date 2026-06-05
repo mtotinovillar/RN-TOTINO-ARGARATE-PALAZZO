@@ -1,31 +1,40 @@
 import { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native';
-import { auth } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 
 export default function Register(props) {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
-    const [register, setRegister] = useState('');
-    const [registerError, setRegisterError] = useState('');
+  const [register, setRegister] = useState('');
+  const [registerError, setRegisterError] = useState('');
 
 
   const onSubmit = () => {
+    if (!email || !password || !userName) {
+      setUserNameError('Todos los campos son obligatorios')
+      return
+    }
+    
     console.log('Email:', email);
     console.log('Username:', userName);
-    console.log('Password:', password);
+    console.log('Password:', password); 
 
     auth.createUserWithEmailAndPassword(email, password)
-      .then(response => { 
-        setRegister(true);
-        console.log("me registre");
-        props.navigation.navigate('Login')
+      .then(response => {
+        db.collection('users').add({
+          email: response.user.email,
+          userName: userName
+        })
+        .then(()=>{
+          props.navigation.navigate('Login')
+        })
+      
       })
-      .catch(error => {
-        console.log('error create', error)
-        setRegisterError('Fallo en el registro')
-      })
+        .catch(error => {
+          console.log('error create', error)
+          setRegisterError('Fallo en el registro')
+        })
   };
 
   return (
@@ -61,15 +70,17 @@ export default function Register(props) {
           placeholder="Ingrese su contraseña"
         />
 
+        {registerError !== '' ? <Text>{registerError}</Text> : null}
+
         <Pressable style={styles.buttonInput} onPress={onSubmit}>
           <Text style={styles.buttonTextInput}>Registrate</Text>
         </Pressable>
 
-        <View style={{ marginTop: 20 }}>
+        {/* <View style={{ marginTop: 20 }}>
           <Text>Email: {email}</Text>
           <Text>Username: {userName}</Text>
           <Text>Password: {password}</Text>
-        </View>
+        </View> */}
 
       </View>
 
