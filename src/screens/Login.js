@@ -57,20 +57,16 @@ export default function Login(props) {
           secureTextEntry={true}
           placeholder="Ingrese su contraseña"
         />
-        {error !== '' && (
-          <Text style={styles.error}>
-            {error}
-          </Text>
-        )}
+        
+        {
+  error !== ''
+    ? <Text style={styles.error}>{error}</Text>
+    : null
+}
 
         <Pressable style={styles.buttonInput} onPress={onSubmit}>
           <Text style={styles.buttonTextInput}>Login</Text>
         </Pressable>
-
-        <View style={{ marginTop: 20 }}>
-          <Text>Email: {email}</Text>
-          <Text>Password: {password}</Text>
-        </View>
 
       </View>
 
