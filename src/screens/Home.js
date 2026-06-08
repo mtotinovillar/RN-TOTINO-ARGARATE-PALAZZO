@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet} from 'react-native';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
 import { db } from '../firebase/config';
 import Likes from '../components/PostItem';
+
 
 export default function Home({ navigation }) {
 
@@ -32,7 +33,9 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            
+                
+          <Text style={styles.titulo}>Instagram</Text>
+
             <FlatList
                 data={posts}
                 keyExtractor={item => item.id}
@@ -53,5 +56,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgb(201, 232, 255.1)',
         maxWidth: '100%',
+    },
+
+    titulo: {
+        fontSize: 40,
+        display: 'flex',
+        alignItems: 'Left',
+        fontWeight: 'bold',
+        margin: 20,
     },
 });

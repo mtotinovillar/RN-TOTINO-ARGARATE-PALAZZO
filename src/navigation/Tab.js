@@ -17,11 +17,11 @@ export default function Stack(props) {
         <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false}} >
 
             <Tab.Screen 
-                name="Home"
+                name="StackHome"
                 component={Home}
                 options={{
                     tabBarIcon: () => (
-                       <MaterialCommunityIcons name="home" size={24} color="black" />
+                       <MaterialCommunityIcons name="home" size={29} color="black" />
                     ),
                 }}
              />
@@ -31,7 +31,7 @@ export default function Stack(props) {
                 component={CreatePost}
                 options={{
                     tabBarIcon: () => (
-                        <Entypo name="circle-with-plus" size={40} color="black" />
+                        <Entypo name="circle-with-plus" size={33} color="black" />
                     ),
                 }}
             />
