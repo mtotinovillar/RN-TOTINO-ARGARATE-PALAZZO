@@ -4,7 +4,7 @@ import firebase from 'firebase';
 
 export default function PostItem({ post, navigation }) {
     const userEmail = auth.currentUser.email;
-    const likes = post.likes;
+    const likes = post.data.likes;
     const likeado = likes.filter(like => like === userEmail).length > 0;
 
     const onSubmit = () => {
@@ -21,8 +21,8 @@ export default function PostItem({ post, navigation }) {
 
     return (
         <View style={styles.card}>
-            <Text style={styles.owner}>{post.owner}</Text>
-            <Text style={styles.descripcion}>{post.description}</Text>
+            <Text style={styles.owner}>{post.data.owner}</Text>
+            <Text style={styles.descripcion}>{post.data.description}</Text>
 
             <View style={styles.acciones}>
                 <Pressable onPress={onSubmit}>
