@@ -51,9 +51,9 @@ export default function PostItem({ post, navigation }) {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(255, 255, 255, 0.66)',
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#cccccc37',
         paddingLeft: 12,
         paddingRight: 70,
         paddingBottom: 12,
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     },
     owner: {
         paddingLeft: 8,
+        fontWeight: 'bold'
     },
     header: {
         fontWeight: 'bold',
