@@ -1,8 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import Entypo from '@expo/vector-icons/Entypo';
 
 import Profile from '../screens/Profile';
 import Home from '../screens/Home'
+import CreatePost from '../screens/CreatePost'
 
 
 export default function Stack(props) {
@@ -11,7 +13,7 @@ export default function Stack(props) {
 
     return (
 
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false}}>
 
             <Tab.Screen
                 name="Home"
@@ -19,6 +21,16 @@ export default function Stack(props) {
                 options={{
                     tabBarIcon: () => (
                        <MaterialCommunityIcons name="home" size={24} color="black" />
+                    ),
+                }}
+            />
+
+<Tab.Screen 
+                name="CreatePost"
+                component={CreatePost}
+                options={{
+                    tabBarIcon: () => (
+                        <Entypo name="circle-with-plus" size={40} color="black" />
                     ),
                 }}
             />

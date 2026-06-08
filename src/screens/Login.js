@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native';
 import { auth } from '../firebase/config';
 
@@ -9,6 +9,13 @@ export default function Login(props) {
   const [login, setLogin] = useState('');
   const [error, setError] = useState('');
 
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        props.navigation.navigate('HomeMenu')
+      }
+    })
+  }, []);
 
   const onSubmit = () => {
     console.log('Email:', email);
@@ -76,11 +83,6 @@ export default function Login(props) {
         <Text style={styles.buttonText}>Registrarse</Text>
       </Pressable>
 
-      <Pressable
-        style={styles.button}
-        onPress={() => props.navigation.navigate('HomeMenu')}>
-        <Text style={styles.buttonText}>Ir a la App</Text>
-      </Pressable>
     </View>
   )
 }

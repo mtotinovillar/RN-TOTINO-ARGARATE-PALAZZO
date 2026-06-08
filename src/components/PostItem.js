@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 
-export default function Likes({ post, navigation }) {
+export default function PostItem({ post, navigation }) {
     const userEmail = auth.currentUser.email;
     const likes = post.likes;
     const likeado = likes.filter(like => like === userEmail).length > 0;
