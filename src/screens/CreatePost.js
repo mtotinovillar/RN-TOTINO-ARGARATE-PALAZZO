@@ -1,54 +1,98 @@
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
-import {useState} from 'react';
-import{db, auth} from '../firebase/config';
+import { useState } from 'react';
+import { db, auth } from '../firebase/config';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function CreatePost({navigation}){
-    const[description, setDescription] = useState('')
+export default function CreatePost({ navigation }) {
+    const [description, setDescription] = useState('')
+    const [error, setError] = useState('');
 
     const onSubmit = () => {
-        db.collection('posts')
-        .add({
-            owner: auth.currentUser.email,
-            description: description,
-            createdAt: Date.now(),
-            likes: [],
-            image: ''
-        })
 
-        .then(( ) => {
-            navigation.navigate('Feed')
-        })
-        .catch(e => console.log (e))
+        if (description === '') {
+            setError('La descripción no puede estar vacía')
+            return
+        }
+        db.collection('posts')
+            .add({
+                owner: auth.currentUser.email,
+                description: description,
+                createdAt: Date.now(),
+                likes: [],
+            })
+
+            .then(() => {
+                setDescription('')
+                navigation.navigate('Home')
+            })
+            .catch(e => console.log(e))
     }
 
 
-    return(
+    return (
         <View style={styles.container}>
-            <Text>Crear post</Text>
 
-            <TextInput
-                style = {styles.desc}
-                placeholder = 'Descripción'
-                onChangeText = {text => setDescription(text)}
-                value = {description}
-            />
+            <View style={styles.topFila}>
+                <Ionicons name="person-circle-sharp" size={50} color="black" />
+                <View style={styles.rightCol}>
+                    <Text style={styles.userName}>{auth.currentUser.email}</Text>
+                    <TextInput
+                        style={styles.textoInput}
+                        placeholder="¿Qué quieres postear?"
+                        onChangeText={text => setDescription(text)}
+                        value={description}
+                    />
+                    <Pressable style={styles.postBtn} onPress={() => onSubmit()}>
+                        <Text style={styles.postBtnTexto}>Postear</Text>
+                    </Pressable>
+                </View>
 
-            <Pressable onPress={()=>onSubmit()}>
-               <Text>Publicar</Text>
-            </Pressable>
+            </View>
+
         </View>
     )
+
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20
+        margin: 10,
     },
-    desc: {
+    topFila: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+    },
+    rightCol: {
+        flex: 1,
+        marginLeft: 12,
+    },
+    userName: {
+        fontSize: 15,
+        fontWeight: '500',
+        color: '#1a1a1a',
+        marginBottom: 10,
+        marginTop: 10,
+    },
+    textoInput: {
+        fontSize: 13,
+        color: 'black',
         borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 8,
-        marginBottom: 12
-    }
+        borderColor: '#bbc5cb',
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        marginBottom: 16,
+    },
+    postBtn: {
+        backgroundColor: '#1d9bf0',
+        borderRadius: 20,
+        paddingVertical: 7,
+        paddingHorizontal: 18,
+        alignSelf: 'flex-start',
+    },
+    postBtnTexto: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: '500',
+    },
 })
