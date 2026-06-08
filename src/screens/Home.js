@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet} from 'react-native';
 import { db } from '../firebase/config';
-import Likes from '../components/Likes';
+import Likes from '../components/PostItem';
 
 export default function Home({ navigation }) {
 
