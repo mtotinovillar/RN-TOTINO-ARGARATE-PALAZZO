@@ -32,6 +32,7 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
+            
             <FlatList
                 data={posts}
                 keyExtractor={item => item.id}
@@ -50,5 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgb(201, 232, 255.1)',
+        maxWidth: '100%',
     },
 });

@@ -75,12 +75,6 @@ export default function Register(props) {
           <Text style={styles.buttonTextInput}>Registrate</Text>
         </Pressable>
 
-        {/* <View style={{ marginTop: 20 }}>
-          <Text>Email: {email}</Text>
-          <Text>Username: {userName}</Text>
-          <Text>Password: {password}</Text>
-        </View> */}
-
       </View>
 
       <Pressable

@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import Entypo from '@expo/vector-icons/Entypo';
+import { StyleSheet } from 'react-native';
 
 import Profile from '../screens/Profile';
 import Home from '../screens/Home'
@@ -13,9 +14,9 @@ export default function Stack(props) {
 
     return (
 
-        <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false}}>
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false}} >
 
-            <Tab.Screen
+            <Tab.Screen 
                 name="Home"
                 component={Home}
                 options={{
@@ -23,7 +24,7 @@ export default function Stack(props) {
                        <MaterialCommunityIcons name="home" size={24} color="black" />
                     ),
                 }}
-            />
+             />
 
 <Tab.Screen 
                 name="CreatePost"
