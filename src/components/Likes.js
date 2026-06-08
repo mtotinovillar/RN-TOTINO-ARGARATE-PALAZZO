@@ -22,7 +22,7 @@ export default function Likes({ post, navigation }) {
     return (
         <View style={styles.card}>
             <Text style={styles.owner}>{post.owner}</Text>
-            <Text style={styles.description}>{post.description}</Text>
+            <Text style={styles.descripcion}>{post.description}</Text>
 
             <View style={styles.acciones}>
                 <Pressable onPress={onSubmit}>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 4,
     },
-    description: {
+    descripcion: {
         fontSize: 14,
         marginBottom: 8,
     },
