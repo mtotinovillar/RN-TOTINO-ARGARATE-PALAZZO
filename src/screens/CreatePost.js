@@ -23,7 +23,7 @@ export default function CreatePost({ navigation }) {
 
             .then(() => {
                 setDescription('')
-                navigation.navigate('Home')
+                navigation.navigate('StackHome')
             })
             .catch(e => console.log(e))
     }

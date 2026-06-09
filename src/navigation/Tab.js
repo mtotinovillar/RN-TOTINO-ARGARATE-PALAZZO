@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 import Profile from '../screens/Profile';
 import Home from '../screens/Home'
 import CreatePost from '../screens/CreatePost'
-
+import StackHome from './StackHome'
 
 export default function Stack(props) {
 
@@ -18,7 +18,7 @@ export default function Stack(props) {
 
             <Tab.Screen 
                 name="StackHome"
-                component={Home}
+                component={StackHome}
                 options={{
                     tabBarIcon: () => (
                        <MaterialCommunityIcons name="home" size={29} color="black" />

@@ -3,7 +3,7 @@ import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-
+import { useState, useEffect } from 'react'
 
 export default function PostItem({ post, navigation }) {
     const userEmail = auth.currentUser.email;
@@ -22,6 +22,16 @@ export default function PostItem({ post, navigation }) {
             })
     }
 
+    const [cantComentarios, setCantComentarios] = useState(0)
+
+    useEffect(() => {
+        db.collection('comments')
+            .where('postId', '==', post.id)
+            .onSnapshot(docs => {
+                setCantComentarios(docs.size)
+            })
+    }, [])
+
     return (
         <View style={styles.card}>
 
@@ -39,8 +49,12 @@ export default function PostItem({ post, navigation }) {
                     </Pressable>
                 </View>
 
-                <Pressable onPress={() => navigation.navigate('Comments', { post })}>
-                    <FontAwesome name="commenting" size={22} color='rgba(0, 0, 0, 0.47)' />
+
+                <Pressable onPress={() => navigation.navigate('Comments', { postId: post.id })}>
+                    <View style={styles.comentarBtn}>
+                        <FontAwesome name="commenting" size={22} color='rgba(0, 0, 0, 0.47)' />
+                        <Text style={styles.cantComentarios}>({cantComentarios})</Text>
+                    </View>
                 </Pressable>
 
             </View>
@@ -104,6 +118,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    comentarBtn: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    cantComentarios: {
+        marginLeft: 4,
+        fontSize: 14,
     },
 })
 
