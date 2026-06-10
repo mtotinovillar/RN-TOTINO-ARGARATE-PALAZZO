@@ -42,6 +42,8 @@ export default function CreatePost({ navigation }) {
                         onChangeText={text => setDescription(text)}
                         value={description}
                     />
+                    {error !== '' && <Text>{error}</Text>}
+
                     <Pressable style={styles.postBtn} onPress={() => onSubmit()}>
                         <Text style={styles.postBtnTexto}>Postear</Text>
                     </Pressable>

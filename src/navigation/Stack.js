@@ -8,28 +8,28 @@ import HomeMenu from '../components/HomeMenu';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
+    return (
+        <NavigationContainer>
 
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen
-          name="Login"
-          component={Login}
-        />
+                <Stack.Screen
+                    name="Login"
+                    component={Login}
+                />
 
-        <Stack.Screen
-          name="Register"
-          component={Register}
-        />
+                <Stack.Screen
+                    name="Register"
+                    component={Register}
+                />
 
-        <Stack.Screen
-          name="HomeMenu"
-          component={HomeMenu}
-        />
+                <Stack.Screen
+                    name="HomeMenu"
+                    component={HomeMenu}
+                />
 
-      </Stack.Navigator>
+            </Stack.Navigator>
 
-    </NavigationContainer>
-  );
+        </NavigationContainer>
+    );
 }
