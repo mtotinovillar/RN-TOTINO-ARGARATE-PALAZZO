@@ -34,7 +34,7 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
                 
-          <Text style={styles.titulo}>Instagram</Text>
+          <Text style={styles.titulo}>SinFiltro</Text>
 
             <FlatList
                 data={posts}

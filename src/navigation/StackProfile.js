@@ -15,6 +15,7 @@ export default function StackProfile() {
             <Stack.Screen
                 name="Comments"
                 component={Comments}
+                options={{ headerShown: true, title: 'Comentarios' }}
             />
         </Stack.Navigator>
     )

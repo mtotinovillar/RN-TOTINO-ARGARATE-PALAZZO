@@ -39,6 +39,7 @@ export default function PostItem({ post, navigation }) {
                 <Ionicons name="person-circle-sharp" size={30} color="black" style={styles.iconoprofile} />
                 <Text style={styles.owner}>{post.data.owner}</Text>
             </View>
+            {/*<Text>{post.data.createdAt}</Text> preguntar lo de la fecha*/}
 
             <Text style={styles.descripcion}>{post.data.description}</Text>
 
