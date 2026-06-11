@@ -21,16 +21,6 @@ export default function Login(props) {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    if (!email.includes('@')) {
-      setError('Email mal formateado');
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('La password debe tener una longitud mínima de 6 caracteres');
-      return;
-    }
-
     auth.signInWithEmailAndPassword(email, password)
       .then((response) => {
         setLogin(true);
@@ -50,7 +40,7 @@ export default function Login(props) {
         <TextInput
           style={styles.input}
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={text => {setEmail(text), setError('')}}
           keyboardType="email-address"
           placeholder="Ingrese su email"
         />
@@ -60,7 +50,7 @@ export default function Login(props) {
           style={styles.input}
           keyboardType='number-pad'
           value={password}
-          onChangeText={setPassword}
+          onChangeText={text => {setPassword(text), setError('')}}
           secureTextEntry={true}
           placeholder="Ingrese su contraseña"
         />

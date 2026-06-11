@@ -32,7 +32,7 @@ export default function Register(props) {
       })
         .catch(error => {
           console.log('error create', error)
-          setRegisterError('Fallo en el registro')
+          setRegisterError(error.message)
         })
   };
 
@@ -45,7 +45,7 @@ export default function Register(props) {
         <TextInput
           style={styles.input}
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={text => {setEmail(text), setRegisterError('')}}
           keyboardType="email-address"
           placeholder="Ingrese su email"
         />
@@ -55,7 +55,7 @@ export default function Register(props) {
           style={styles.input}
           keyboardType='default'
           value={userName}
-          onChangeText={text => setUserName(text)}
+          onChangeText={text => {setUserName(text), setRegisterError('')}}
           placeholder="Ingrese su usuario"
         />
 
@@ -64,7 +64,7 @@ export default function Register(props) {
           style={styles.input}
           keyboardType='number-pad'
           value={password}
-          onChangeText={setPassword}
+          onChangeText={text => {setPassword(text), setRegisterError('')}}
           secureTextEntry={true}
           placeholder="Ingrese su contraseña"
         />

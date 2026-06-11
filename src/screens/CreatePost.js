@@ -39,7 +39,7 @@ export default function CreatePost({ navigation }) {
                     <TextInput
                         style={styles.textoInput}
                         placeholder="¿Qué quieres postear?"
-                        onChangeText={text => setDescription(text)}
+                        onChangeText={text => {setDescription(text), setError('')}}
                         value={description}
                         keyboardType='default'
                     />
