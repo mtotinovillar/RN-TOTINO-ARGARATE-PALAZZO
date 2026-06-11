@@ -84,7 +84,7 @@ export default function Comments({ route, navigation }) {
           placeholder="Escribí un comentario..."
           value={comentario}
           onChangeText={setComentario}
-          //falta el keyboardtype?
+          keyboardType='default'
         />
         <Pressable style={styles.boton} onPress={agregarComentario}>
           <Text style={styles.botonTexto}><Feather name="send" size={15} color="white" style={styles.icono} />Enviar</Text>

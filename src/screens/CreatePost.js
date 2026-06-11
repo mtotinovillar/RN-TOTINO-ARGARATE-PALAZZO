@@ -41,7 +41,7 @@ export default function CreatePost({ navigation }) {
                         placeholder="¿Qué quieres postear?"
                         onChangeText={text => setDescription(text)}
                         value={description}
-                        //falta el keyboardtype?
+                        keyboardType='default'
                     />
                     {error !== '' && <Text>{error}</Text>}
 
