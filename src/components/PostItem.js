@@ -31,15 +31,17 @@ export default function PostItem({ post, navigation }) {
                 setCantComentarios(docs.size)
             })
     }, [])
-
+    const fecha = new Date(post.data.createdAt).toLocaleString();
     return (
         <View style={styles.card}>
 
             <View style={styles.header}>
                 <Ionicons name="person-circle-sharp" size={30} color="black" style={styles.iconoprofile} />
                 <Text style={styles.owner}>{post.data.owner}</Text>
+                    <Text style = {styles.fecha}> {fecha}</Text> 
+                    {/* preguntar lo de la fecha */}
             </View>
-            {/*<Text>{post.data.createdAt}</Text> preguntar lo de la fecha*/}
+        
 
             <Text style={styles.descripcion}>{post.data.description}</Text>
 
@@ -127,6 +129,12 @@ const styles = StyleSheet.create({
     cantComentarios: {
         marginLeft: 4,
         fontSize: 14,
+    },
+    fecha: {
+       marginLeft: 15,
+        fontSize: 12,
+        color: 'rgba(57, 57, 57, 0.51)',
+        fontWeight: 'bold',
     },
 })
 

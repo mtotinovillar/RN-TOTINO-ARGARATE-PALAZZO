@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import Entypo from '@expo/vector-icons/Entypo';
+import {Ionicons, FontAwesome } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 
 import StackProfile from './StackProfile';
 import Home from '../screens/Home'
 import CreatePost from '../screens/CreatePost'
 import StackHome from './StackHome'
+
 
 export default function Stack(props) {
 
@@ -21,7 +21,7 @@ export default function Stack(props) {
                 component={StackHome}
                 options={{
                     tabBarIcon: () => (
-                        <MaterialCommunityIcons name="home" size={29} color="black" />
+                        <FontAwesome name="home" size={27} color="black" />
                     ),
                 }}
             />
@@ -31,7 +31,7 @@ export default function Stack(props) {
                 component={CreatePost}
                 options={{
                     tabBarIcon: () => (
-                        <Entypo name="circle-with-plus" size={33} color="black" />
+                        <Ionicons name="add-circle" size={35} color="black" />
                     ),
                 }}
             />

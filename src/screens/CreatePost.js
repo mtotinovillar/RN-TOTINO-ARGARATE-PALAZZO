@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { db, auth } from '../firebase/config';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {Ionicons, FontAwesome6} from '@expo/vector-icons';
 
 export default function CreatePost({ navigation }) {
     const [description, setDescription] = useState('')
@@ -41,11 +41,12 @@ export default function CreatePost({ navigation }) {
                         placeholder="¿Qué quieres postear?"
                         onChangeText={text => setDescription(text)}
                         value={description}
+                        //falta el keyboardtype?
                     />
                     {error !== '' && <Text>{error}</Text>}
 
                     <Pressable style={styles.postBtn} onPress={() => onSubmit()}>
-                        <Text style={styles.postBtnTexto}>Postear</Text>
+                        <Text style={styles.postBtnTexto}> <FontAwesome6 name="arrow-up" size={13} color="white" />  Postear</Text>
                     </Pressable>
                 </View>
 
@@ -96,5 +97,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 14,
         fontWeight: '500',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+    
     },
 })

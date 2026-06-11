@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
 import { db, auth } from '../firebase/config';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import PostItem from '../components/PostItem'
 
 export default function Profile({ navigation }) {
@@ -54,7 +54,7 @@ export default function Profile({ navigation }) {
                 <Pressable
                     style={styles.button}
                     onPress={() => logout()}>
-                    <Text style={styles.buttonText}>Desloguearse</Text>
+                    <Text style={styles.buttonText}>Desloguearse  <MaterialCommunityIcons name="logout" size={24} color="white" /></Text>
                 </Pressable>
             </View>
 
@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 32,
         marginTop: 20,
+        backgroundColor: "rgba(255, 255, 255, 0.26)",
+        padding: 20,
+        borderRadius: 12,
+        alignSelf: 'center',
     },
     title: {
         fontSize: 22,
@@ -111,15 +115,20 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 14,
+        fontWeight: "bold",
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     postsTitle: {
-        fontSize: 15,
+        fontSize: 18,
         fontWeight: '500',
         marginBottom: 12,
         color: '#1a1a1a',
         borderBottomWidth: 0.5,
         borderBottomColor: '#abd0f8',
         paddingBottom: 8,
+        fontWeight: 'bold',
     },
     postCard: {
         borderWidth: 0.5,

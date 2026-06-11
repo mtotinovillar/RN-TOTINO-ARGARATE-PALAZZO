@@ -76,7 +76,7 @@ export default function Login(props) {
         </Pressable>
 
       </View>
-
+<Text>¿No tenés cuenta?</Text>
       <Pressable
         style={styles.button}
         onPress={() => props.navigation.navigate('Register')}>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3498db',
     padding: 15,
     borderRadius: 10,
-    width: '80%',
+    width: '20%',
     marginVertical: 10,
   },
   buttonText: {
