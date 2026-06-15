@@ -9,13 +9,6 @@ export default function Login(props) {
   const [login, setLogin] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        props.navigation.navigate('HomeMenu')
-      }
-    })
-  }, []);
 
   const onSubmit = () => {
     console.log('Email:', email);

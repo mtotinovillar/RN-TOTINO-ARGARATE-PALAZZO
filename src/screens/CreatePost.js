@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { db, auth } from '../firebase/config';
 import {Ionicons, FontAwesome6} from '@expo/vector-icons';
 
-export default function CreatePost({ navigation }) {
+export default function CreatePost(props) {
     const [description, setDescription] = useState('')
     const [error, setError] = useState('');
 
@@ -23,7 +23,7 @@ export default function CreatePost({ navigation }) {
 
             .then(() => {
                 setDescription('')
-                navigation.navigate('StackHome')
+                props.navigation.navigate('StackHome')
             })
             .catch(e => console.log(e))
     }

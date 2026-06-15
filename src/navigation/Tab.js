@@ -8,7 +8,7 @@ import CreatePost from '../screens/CreatePost'
 import StackHome from './StackHome'
 
 
-export default function Stack(props) {
+export default function Stack() {
 
     const Tab = createBottomTabNavigator();
 

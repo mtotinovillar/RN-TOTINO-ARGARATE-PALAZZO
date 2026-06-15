@@ -4,7 +4,7 @@ import { db } from '../firebase/config';
 import Likes from '../components/PostItem';
 
 
-export default function Home({ navigation }) {
+export default function Home(props) {
 
     const [posts, setPosts] = useState([]);
 
@@ -42,7 +42,7 @@ export default function Home({ navigation }) {
                 renderItem={({ item }) =>
                     <Likes
                         post={item}
-                        navigation={navigation}
+                        navigation={props.navigation}
                     />
                 }
             />

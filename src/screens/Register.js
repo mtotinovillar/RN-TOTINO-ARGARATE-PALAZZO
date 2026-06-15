@@ -6,7 +6,6 @@ export default function Register(props) {
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [register, setRegister] = useState('');
   const [registerError, setRegisterError] = useState('');
 
 
@@ -15,9 +14,9 @@ export default function Register(props) {
       setUserNameError('Todos los campos son obligatorios')
       return
     }
-    
+
     console.log('Users:', userName, email);
-    console.log('Password:', password); 
+    console.log('Password:', password);
 
     auth.createUserWithEmailAndPassword(email, password)
       .then(response => {
@@ -25,15 +24,17 @@ export default function Register(props) {
           email: response.user.email,
           userName: userName
         })
-        .then(()=>{
-          props.navigation.navigate('Login')
-        })
-      
+          .then(() => {
+            auth.signOut()
+              .then(() => {
+                props.navigation.navigate('Login')
+              })
+          })
       })
-        .catch(error => {
-          console.log('error create', error)
-          setRegisterError(error.message)
-        })
+      .catch(error => {
+        console.log('error create', error)
+        setRegisterError(error.message)
+      })
   };
 
   return (
@@ -45,7 +46,7 @@ export default function Register(props) {
         <TextInput
           style={styles.input}
           value={email}
-          onChangeText={text => {setEmail(text), setRegisterError('')}}
+          onChangeText={text => { setEmail(text), setRegisterError('') }}
           keyboardType="email-address"
           placeholder="Ingrese su email"
         />
@@ -55,7 +56,7 @@ export default function Register(props) {
           style={styles.input}
           keyboardType='default'
           value={userName}
-          onChangeText={text => {setUserName(text), setRegisterError('')}}
+          onChangeText={text => { setUserName(text), setRegisterError('') }}
           placeholder="Ingrese su usuario"
         />
 
@@ -64,7 +65,7 @@ export default function Register(props) {
           style={styles.input}
           keyboardType='number-pad'
           value={password}
-          onChangeText={text => {setPassword(text), setRegisterError('')}}
+          onChangeText={text => { setPassword(text), setRegisterError('') }}
           secureTextEntry={true}
           placeholder="Ingrese su contraseña"
         />

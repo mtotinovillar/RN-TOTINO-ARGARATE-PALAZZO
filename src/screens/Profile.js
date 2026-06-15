@@ -1,10 +1,10 @@
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
 import { db, auth } from '../firebase/config';
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import PostItem from '../components/PostItem'
 
-export default function Profile({ navigation }) {
+export default function Profile(props) {
     const [userName, setUserName] = useState('');
     const [posts, setPosts] = useState([]);
 
@@ -20,7 +20,9 @@ export default function Profile({ navigation }) {
                         }
                     );
                 });
-                setUserName(users[0].data.userName);
+                if (users.length > 0) {
+                    setUserName(users[0].data.userName);
+                }
             }
         )
 
@@ -40,7 +42,7 @@ export default function Profile({ navigation }) {
 
     const logout = () => {
         auth.signOut()
-            .then(() => navigation.navigate('Login'))
+            .then(() => props.navigation.navigate('Login'))
     };
 
     return (
@@ -65,7 +67,7 @@ export default function Profile({ navigation }) {
                 data={posts}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <PostItem post={item} navigation={navigation} />
+                    <PostItem post={item} navigation={props.navigation} />
                 )}
             />
         </View>

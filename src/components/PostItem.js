@@ -5,14 +5,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useState, useEffect } from 'react'
 
-export default function PostItem({ post, navigation }) {
+export default function PostItem(props) {
     const userEmail = auth.currentUser.email;
-    const likes = post.data.likes;
+    const likes = props.post.data.likes;
     const likeado = likes.filter(like => like === userEmail).length > 0;
 
     const onSubmit = () => {
         db.collection('posts')
-            .doc(post.id)
+            .doc(props.post.id)
             .update({
                 likes: likeado ? firebase.firestore.FieldValue.arrayRemove(userEmail)
                     : firebase.firestore.FieldValue.arrayUnion(userEmail)
@@ -26,24 +26,23 @@ export default function PostItem({ post, navigation }) {
 
     useEffect(() => {
         db.collection('comments')
-            .where('postId', '==', post.id)
+            .where('postId', '==', props.post.id)
             .onSnapshot(docs => {
                 setCantComentarios(docs.size)
             })
     }, [])
-    const fecha = new Date(post.data.createdAt).toLocaleString();
+    const fecha = new Date(props.post.data.createdAt).toLocaleString();
     return (
         <View style={styles.card}>
 
             <View style={styles.header}>
                 <Ionicons name="person-circle-sharp" size={30} color="black" style={styles.iconoprofile} />
-                <Text style={styles.owner}>{post.data.owner}</Text>
+                <Text style={styles.owner}>{props.post.data.owner}</Text>
                     <Text style = {styles.fecha}> {fecha}</Text> 
-                    {/* preguntar lo de la fecha */}
             </View>
         
 
-            <Text style={styles.descripcion}>{post.data.description}</Text>
+            <Text style={styles.descripcion}>{props.post.data.description}</Text>
 
             <View style={styles.acciones}>
                 <View style={styles.acciones}>
@@ -53,7 +52,7 @@ export default function PostItem({ post, navigation }) {
                 </View>
 
 
-                <Pressable onPress={() => navigation.navigate('Comments', { postId: post.id })}>
+                <Pressable onPress={() => props.navigation.navigate('Comments', { postId: props.post.id })}>
                     <View style={styles.comentarBtn}>
                         <FontAwesome name="commenting" size={22} color='rgba(0, 0, 0, 0.47)' />
                         <Text style={styles.cantComentarios}>({cantComentarios})</Text>

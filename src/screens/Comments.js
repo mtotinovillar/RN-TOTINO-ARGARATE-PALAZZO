@@ -4,8 +4,8 @@ import { db, auth } from '../firebase/config'
 import {Feather} from '@expo/vector-icons';
 import PostItem from '../components/PostItem'
 
-export default function Comments({ route, navigation }) {
-  const { postId } = route.params
+export default function Comments(props) {
+  const{postId} = props.route.params
   const [comentario, setComentario] = useState('')
   const [comentarios, setComentarios] = useState([])
   const [posts, setPosts] = useState([])
@@ -56,7 +56,7 @@ export default function Comments({ route, navigation }) {
     keyExtractor={item => item.id}
     renderItem={({ item }) =>
         item.id === postId
-            ? <PostItem post={item} navigation={navigation} />
+            ? <PostItem post={item} navigation={props.navigation} />
             : null
     }
 />
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   comentarioItem: {
     marginBottom: 12,
     padding: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#e3e1e1f8',
     borderRadius: 8,
   },
   user: {
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#cccccce8',
     borderRadius: 8,
     padding: 10,
     marginRight: 8,
